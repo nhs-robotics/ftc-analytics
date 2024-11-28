@@ -9,8 +9,8 @@
 
     const pages: {[key: string]: string} = {
         "/": "Home",
-        "/scoreAverages": "Score Averages",
-        "/pointBreakdown": "Point Breakdown",
+        "/overview": "Overview",
+        "/regionalScoring": "Regional Scoring",
     }
 
     let currentPath = $derived($page.url.pathname);
@@ -26,8 +26,8 @@
     </Button>
     <nav class="flex items-center justify-between hidden md:block">
         <div class="flex space-x-4">
-            <Button variant="secondary" href="/scoreAverages" class="text-1xl">Score Averages</Button>
-            <Button variant="secondary" href="/pointBreakdown" class="text-1xl">Point Breakdown</Button>
+            <Button variant="secondary" href="/overview" class="text-1xl">Overview</Button>
+            <Button variant="secondary" href="/regionalScoring" class="text-1xl">Regional Scoring</Button>
         </div>
     </nav>
     <div class="md:hidden">

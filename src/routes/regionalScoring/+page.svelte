@@ -1,8 +1,9 @@
-<script>
+<script lang="ts">
     import * as Accordion from "$lib/components/ui/accordion";
     import { Input } from "$lib/components/ui/input/index";
     import Chart from "$lib/components/ui/chart.svelte";
-    import { Separator } from "$lib/components/ui/separator";
+    import { Button } from "$lib/components/ui/button/";
+    import { averageTimeChartOptions, distributionChartOptions } from "$lib/chartUtils";
 
     // START OF TEMP TESTING VARS
     
@@ -181,15 +182,6 @@
     ];
     
     const overall = {
-        weeklyAverageOverTime: [
-            [Date.now() - 86400000 * 6, 48.75],
-            [Date.now() - 86400000 * 5, 49.12],
-            [Date.now() - 86400000 * 4, 50.05],
-            [Date.now() - 86400000 * 3, 50.23],
-            [Date.now() - 86400000 * 2, 49.89],
-            [Date.now() - 86400000, 49.91],
-            [Date.now(), 50.08]
-        ],
         scores: Object.values({min: 10, q1: 25, median: 36, q3: 40, max: 65})
     };
 
@@ -207,75 +199,13 @@
         });
     });
 
-    const mdOrLarger = $derived(screenWidth >= 768);
-    const chartSize = $derived(mdOrLarger ? "1/2" : "full");
-
-    const averageTimeChartOptions = $derived((data, specifier) => {
-        return {
-            chart: {
-                type: "line",
-                toolbar: {
-                    offsetY: mdOrLarger ? 0 : -20
-                }
-            },
-            stroke: {
-                curve: "monotoneCubic",
-            },
-            xaxis: {
-                type: 'datetime',
-            },
-            yaxis: {
-                min: getYPadding(data.map(point => point[1])).min,
-                max: getYPadding(data.map(point => point[1])).max,
-            },
-            series: [{
-                name: "Average Score",
-                data,
-            }],
-            title: {
-                text: "Average Match Score per Alliance (" + specifier + ")"
-            }
-        }
-    });
-
-    const distributionChartOptions = $derived((data, specifier) => {
-        return {
-            chart: {
-                type: "boxPlot",
-                toolbar: {
-                    offsetY: mdOrLarger ? 0 : -20
-                }
-            },
-            series: [
-                {
-                    type: "boxPlot",
-                    data: [{x: "", y: data}],
-                }
-            ],
-            title: {
-                text: "Match Score per Alliance Distribution (" + specifier + ")"
-            }
-        }
-    });
-
-    function getYPadding(yValues) {
-        const max = Math.max(...yValues);
-        const min = Math.min(...yValues);
-        const range = max - min;
-        return {min: Math.floor(min - range * 0.1), max: Math.ceil(max + range * 0.1)};
-    }
+    const chartSize = $derived(screenWidth >= 768 ? "1/2" : "full");
 </script>
 
 <div class="flex w-full items-center flex-col">
     <div class="w-4/5 flex flex-wrap">
         <h1 class="inline-block text-4xl my-5 w-full text-center">
-            Overall Average
-        </h1>
-        <Chart class="w-{chartSize}" options={averageTimeChartOptions(overall.weeklyAverageOverTime, "Overall")}/>
-        <Chart class="w-{chartSize}" options={distributionChartOptions(overall.scores, "Overall")}/>
-        <Separator class="my-5" />
-        <h1 class="inline-block text-4xl my-5 w-full text-center">
-            State/Region Averages
+            Regional Scoring
         </h1>
         <Input class="border-foreground" type="search" placeholder="Search" bind:value={searchText} />
         <Accordion.Root class="w-full">
@@ -289,9 +219,10 @@
                     </Accordion.Trigger>
                     <Accordion.Content>
                         <div class="flex flex-wrap">
-                            <Chart class="w-{chartSize}" options={averageTimeChartOptions(state.weeklyAverageOverTime, state.name)}/>
-                            <Chart class="w-{chartSize}" options={distributionChartOptions(overall.scores, state.name)}/>
+                            <Chart class="w-{chartSize}" options={averageTimeChartOptions(state.weeklyAverageOverTime, state.name, screenWidth)}/>
+                            <Chart class="w-{chartSize}" options={distributionChartOptions(overall.scores, state.name, screenWidth)}/>
                         </div>
+                        <Button href={"regionalScoring/" + state.name} class="w-full">See More</Button>
                     </Accordion.Content>
                 </Accordion.Item>
             {/each}
