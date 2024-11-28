@@ -279,7 +279,7 @@
         </h1>
         <Input class="border-foreground" type="search" placeholder="Search" bind:value={searchText} />
         <Accordion.Root class="w-full">
-            {#each states.filter(state => state.name.includes(searchText) || searchText === "") as state}
+            {#each states.filter(state => state.name.toLowerCase().includes(searchText.toLowerCase()) || searchText === "") as state}
                 <Accordion.Item value={state.name}>
                     <Accordion.Trigger class="group">
                         <div class="w-full flex justify-left space-x-5">

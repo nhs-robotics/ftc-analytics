@@ -4,6 +4,7 @@
 
     import { page } from '$app/stores';
     import { Button } from "$lib/components/ui/button";
+    import Github from 'lucide-svelte/icons/github';
     import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
 
     const pages: {[key: string]: string} = {
@@ -39,11 +40,9 @@
             </DropdownMenu.Content>
         </DropdownMenu.Root>
     </div>
-    <h2
-        class="text-3xl tracking-tight inline-block"
-    >
-        2024
-    </h2>
+    <Button href="https://github.com/NOT_IMPLEMENTED" class="rounded-3xl bg-foreground hover:bg-accent-foreground border-none h-8 w-8" size="icon">
+        <Github color="white" class="w-6 h-6"/>
+    </Button>
 </div>
 
 {@render children()}

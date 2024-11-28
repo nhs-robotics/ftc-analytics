@@ -14,13 +14,13 @@
 <AccordionPrimitive.Header {level} class="flex">
 	<AccordionPrimitive.Trigger
 		class={cn(
-			"flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180",
+			"flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 hover:bg-accent px-1",
 			className
 		)}
 		{...$$restProps}
 		on:click
 	>
 		<slot />
-		<ChevronDown class="h-4 w-4 transition-transform duration-200" />
+		<ChevronDown class="h-6 w-6 transition-transform duration-200" />
 	</AccordionPrimitive.Trigger>
 </AccordionPrimitive.Header>
