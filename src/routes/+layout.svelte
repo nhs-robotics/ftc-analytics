@@ -22,7 +22,7 @@
 		href="/"
         class="text-3xl tracking-tight inline-block flex p-0"
     >
-        FTC+
+        FTCA
     </Button>
     <nav class="flex items-center justify-between hidden md:block">
         <div class="flex space-x-4">
