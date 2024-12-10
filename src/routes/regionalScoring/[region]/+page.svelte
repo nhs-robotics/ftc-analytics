@@ -22,52 +22,30 @@
             [Date.now(), 48.2]
         ],
         scores: [12, 15, 22, 28, 36],
-        breakdown: {
-            "averageTeleopPoints": 32,
-            "averageAutoPoints": 18,
-            "averageEndgamePoints": 6,
-            "averageAutoSamples": {
-                "low": 3,
-                "high": 1,
-                "net": 5,
-                "points": 15
-            },
-            "averageAutoSpecimen": {
-                "low": 1,
-                "high": 0,
-                "points": 5
-            },
+        "breakdown": {
+            "averageTeleopPoints": 20,
+            "averageAutoPoints": 10,
+            "averageEndgamePoints": 12,
+            "averageAutoBreakdown": [1, 2, 1, 2, 1],
+            "averageTeleopBreakdown": [3, 3, 4, 2, 4],
             "autoEnd": {
-                "points": 12,
-                "percentAscent3": 10,
-                "percentAscent2": 40,
-                "percentAscent1": 20,
-                "percentObservationZone": 20,
-                "percentNone": 10,
-            },
-            "averageTeleopSamples": {
-                "low": 2,
-                "high": 5,
-                "net": 12,
-                "points": 17
-            },
-            "averageTeleopSpecimen": {
-                "low": 2,
-                "high": 5,
-                "points": 20
+                "averagePoints": 4,
+                "percentAscent1": 45,
+                "percentObservationZone": 50,
+                "percentNone": 5,
             },
             "teleopEnd": {
-                "points": 30,
-                "percentAscent3": 20,
-                "percentAscent2": 20,
+                "averagePoints": 15,
+                "percentAscent3": 12,
+                "percentAscent2": 25,
                 "percentAscent1": 20,
-                "percentObservationZone": 20,
-                "percentNone": 20,
+                "percentObservationZone": 21,
+                "percentNone": 22,
             },
             "averageFouls": {
-                "points": 5,
+                "points": 10,
                 "major": 0,
-                "minor": 1
+                "minor": 2
             }
         }
     };
@@ -92,12 +70,12 @@
         <h1 class="inline-block text-4xl my-5 w-full text-center">
             {regionName} Scoring
         </h1>
-        <Chart class="w-{chartSize}" options={averageTimeChartOptions(region.weeklyAverageOverTime, regionName, screenWidth)}/>
-        <Chart class="w-{chartSize}" options={distributionChartOptions(region.scores, regionName, screenWidth)}/>
+        <Chart class="w-{chartSize}" options={averageTimeChartOptions(region.weeklyAverageOverTime, screenWidth)}/>
+        <Chart class="w-{chartSize}" options={distributionChartOptions(region.scores, screenWidth)}/>
         <Separator class="my-2" />
         <h2 class="inline-block text-2xl my-5 w-full text-center">
             Score Breakdown
         </h2>
-        <ScoreBreakdown data={region.breakdown} class="mb-10"/>
+        <ScoreBreakdown data={region.breakdown} columnSize={chartSize} class="mb-10"/>
     </div>
 </div>

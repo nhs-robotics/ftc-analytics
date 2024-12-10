@@ -1,4 +1,4 @@
-function averageTimeChartOptions(data: number[][], specifier: string, screenWidth: number) {
+function averageTimeChartOptions(data: number[][], screenWidth: number) {
     return {
         chart: {
             type: "line",
@@ -27,12 +27,12 @@ function averageTimeChartOptions(data: number[][], specifier: string, screenWidt
             data,
         }],
         title: {
-            text: "Average Match Score per Alliance (" + specifier + ")"
+            text: "Average Match Score per Alliance"
         }
     }
 };
 
-function distributionChartOptions(data: number[], specifier: string, screenWidth: number) {
+function distributionChartOptions(data: number[], screenWidth: number) {
     return {
         chart: {
             type: "boxPlot",
@@ -53,7 +53,49 @@ function distributionChartOptions(data: number[], specifier: string, screenWidth
             }
         ],
         title: {
-            text: "Match Score per Alliance Distribution (" + specifier + ")"
+            text: "Match Score per Alliance Distribution"
+        }
+    }
+};
+
+function pointBreakdownChartOptions(pointValuesAuto: number[], pointValuesTeleop: number[]) {
+    const categories = ["Net", "Low Samples", "High Samples", "Low Specimens", "High Specimens"];
+    const series = categories.map((category, index) => ({name: category, data: [pointValuesAuto[index], pointValuesTeleop[index]]}));
+    return {
+        chart: {
+            type: "bar",
+            stacked: true,
+        },
+        plotOptions: {
+            bar: {
+              horizontal: true,
+            }
+          },
+        series: series,
+        xaxis: {
+            categories: ["Autonomous", "Teleop"]
+        },
+    }
+};
+
+function penaltyBreakdownChartOptions(minorPenalties: number, majorPenalties: number, points: number) {
+    majorPenalties =1
+    return {
+        chart: {
+            type: "bar",
+            stacked: true,  
+        },
+        plotOptions: {
+            bar: {
+              horizontal: true,
+            }
+          },
+        series: [
+            {name: "Minor", data: [minorPenalties * 10]},
+            {name: "Major", data: [majorPenalties * 30]}
+        ],
+        xaxis: {
+            categories: [""]
         }
     }
 };
@@ -66,4 +108,4 @@ function getYPadding(data: number[][]) {
     return {min: Math.floor(min - range * 0.1), max: Math.ceil(max + range * 0.1)};
 }
 
-export { averageTimeChartOptions, distributionChartOptions, getYPadding };
+export { averageTimeChartOptions, distributionChartOptions, pointBreakdownChartOptions, penaltyBreakdownChartOptions, getYPadding };
