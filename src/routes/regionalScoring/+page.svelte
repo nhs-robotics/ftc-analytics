@@ -219,8 +219,8 @@
                     </Accordion.Trigger>
                     <Accordion.Content>
                         <div class="flex flex-wrap">
-                            <Chart class="w-{chartSize}" options={averageTimeChartOptions(state.weeklyAverageOverTime, state.name, screenWidth)}/>
-                            <Chart class="w-{chartSize}" options={distributionChartOptions(overall.scores, state.name, screenWidth)}/>
+                            <Chart class="w-{chartSize}" options={averageTimeChartOptions(state.weeklyAverageOverTime, screenWidth)}/>
+                            <Chart class="w-{chartSize}" options={distributionChartOptions(overall.scores, screenWidth)}/>
                         </div>
                         <Button href={"regionalScoring/" + state.name} class="w-full">See More</Button>
                     </Accordion.Content>
