@@ -26,7 +26,7 @@
 <div class="flex w-full items-center flex-col">
     <div class="w-4/5 flex flex-wrap justify-left">
         <Chart class="w-{chartSize}" options={averageTimeChartOptions(analysis.averagePreFoulTotalOverTime, screenWidth)}/>
-        <Chart class="w-{chartSize}" options={distributionChartOptions(analysis.distribution, screenWidth)}/>
+        <Chart class="w-{chartSize}" options={distributionChartOptions(analysis.distribution)}/>
         <Separator class="my-2" />
         <h2 class="inline-block text-2xl my-5 w-full text-center">
             Score Breakdown

@@ -19,7 +19,7 @@ function averageTimeChartOptions(data: number[][], screenWidth: number) {
             }
         },
         stroke: {
-            curve: "monotoneCubic",
+            curve: "smooth",
         },
         xaxis: {
             type: 'datetime',
@@ -58,7 +58,7 @@ function distributionChartBoxPlotOptions(data: number[]) {
     }
 };
 
-function distributionChartOptions(data: number[], screenWidth: number) {
+function distributionChartOptions(data: {string: number}) {
     const xValues = Object.keys(data);
     const yValues = Object.values(data);
     const dataFormatted = xValues.map((value, index) => ({x: value, y: yValues[index]}))
