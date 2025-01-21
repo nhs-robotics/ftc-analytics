@@ -40,7 +40,7 @@
             </DropdownMenu.Content>
         </DropdownMenu.Root>
     </div>
-    <Button href="https://github.com/NOT_IMPLEMENTED" class="rounded-3xl bg-foreground hover:bg-accent-foreground border-none h-8 w-8" size="icon">
+    <Button href="https://github.com/nhs-robotics/ftc-analytics" target="_blank/" class="rounded-3xl bg-foreground hover:bg-accent-foreground border-none h-8 w-8" size="icon">
         <Github color="white" class="w-6 h-6"/>
     </Button>
 </div>
