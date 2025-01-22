@@ -20,7 +20,7 @@ const config = {
       precompress: false,
       strict: false,
       paths: {
-        base: process.argv.includes('dev') ? '' : "analytics"
+        base: process.argv.includes('dev') ? '' : process.env.BASE_PATH
       }
     }),
   },
