@@ -10,8 +10,11 @@
     let analysis = $state<typeof data[number] | undefined>(undefined);
 
     onMount(async () => {
-        analysis = await (await fetch(`/api/score?location=${regionName}`)).json();
+        analysis = (await (await fetch(`/api/score`)).json()).find(region => region.collectionName === regionName);
+        console.log(analysis);
     });
+
+    export const prerender = true;
 </script>
 
 <h1 class="inline-block text-4xl my-5 w-full text-center">

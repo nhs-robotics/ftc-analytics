@@ -9,3 +9,5 @@ export const GET: RequestHandler = ({ url }) => {
     
 	return Response.json(regions);
 };
+
+export const prerender = true;

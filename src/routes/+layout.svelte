@@ -2,6 +2,8 @@
 	import '../app.css';
 	let { children } = $props();
 
+    export const prerender = true;
+
     import { page } from '$app/stores';
     import { Button } from "$lib/components/ui/button";
     import Github from 'lucide-svelte/icons/github';
@@ -14,6 +16,8 @@
     }
 
     let currentPath = $derived($page.url.pathname);
+
+    export const ssr = false;
 </script>
 
 <div class="w-full h-10 bg-accent flex px-4 justify-between items-center">
