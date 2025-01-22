@@ -25,8 +25,6 @@
     });
 
     const chartSize = $derived(screenWidth >= 768 ? "1/2" : "full");
-
-    export const prerender = true;
 </script>
 
 <div class="flex w-full items-center flex-col">
