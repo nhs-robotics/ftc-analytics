@@ -40,6 +40,8 @@ jobs:
       id-token: write
 
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: '/${{ github.event.repository.name }}/build'
+          branch: gh-pages
