@@ -1,1 +1,0 @@
-import{a as p,t as r}from"../chunks/disclose-version.CN2Cf1ko.js";import"../chunks/legacy.B_M0IQkq.js";var t=r("<div>Hello world from main page!</div>");function m(o){var a=t();p(o,a)}export{m as component};
