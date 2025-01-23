@@ -43,5 +43,5 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: '/${{ github.event.repository.name }}/build'
+          folder: static
           branch: gh-pages
