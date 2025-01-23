@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onDestroy, onMount } from 'svelte';
 
-    let chartElement: Element;
+    let chartElement: Element | undefined = $state();
     const { options, ...props } = $props();
 
     let chart: ApexCharts | undefined = undefined;
@@ -16,6 +16,10 @@
         if (chart !== undefined) {
             chart.destroy();
         }
+    });
+    
+    $effect(() => {
+        chart?.updateOptions(options);
     });
 </script>
 
